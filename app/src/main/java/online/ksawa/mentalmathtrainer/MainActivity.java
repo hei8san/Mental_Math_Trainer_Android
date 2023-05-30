@@ -41,6 +41,10 @@ public class MainActivity extends AppCompatActivity {
         questionTextView.setText(questionStringBuilder.toString());
     }
 
+    public void startGame(){
+
+    }
+
 
 
 }

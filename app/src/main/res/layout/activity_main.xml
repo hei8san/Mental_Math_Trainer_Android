@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scoreTextView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
@@ -47,41 +48,48 @@
             android:id="@+id/answerBTN1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="btnClicked"
+            android:tag="0"
             android:text="Button"
             android:textSize="20sp"
             app:layout_column="0"
-            app:layout_row="0"
-            android:tag="0"/>
+            app:layout_row="0" />
 
         <Button
             android:id="@+id/answerBTN2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:tag="1"
             android:text="Button"
             android:textSize="20sp"
             app:layout_column="1"
             app:layout_row="0"
-            android:tag="1"/>
+            android:onClick="btnClicked"
+            />
 
         <Button
             android:id="@+id/answerBTN3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:tag="2"
             android:text="Button"
             android:textSize="20sp"
             app:layout_column="0"
             app:layout_row="1"
-            android:tag="2"/>
+            android:onClick="btnClicked"
+            />
 
         <Button
             android:id="@+id/answerBTN4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:tag="3"
             android:text="Button"
             android:textSize="20sp"
             app:layout_column="1"
             app:layout_row="1"
-            android:tag="3"/>
+            android:onClick="btnClicked"
+            />
     </androidx.gridlayout.widget.GridLayout>
 
     <TextView
@@ -94,5 +102,32 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/resultTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="178dp"
+        android:layout_marginEnd="176dp"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/answerGridLayout" />
+
+    <Button
+        android:id="@+id/startBTN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="161dp"
+        android:layout_marginTop="43dp"
+        android:layout_marginEnd="156dp"
+        android:layout_marginBottom="41dp"
+        android:text="Start"
+        app:layout_constraintBottom_toTopOf="@+id/answerGridLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/questionTextView"
+        android:onClick="startBTNClicked"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

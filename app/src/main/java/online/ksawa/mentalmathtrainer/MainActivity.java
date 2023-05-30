@@ -3,6 +3,7 @@ package online.ksawa.mentalmathtrainer;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -10,13 +11,18 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     TextView questionTextView;
+    TextView timerTextView;
+    CountDownTimer countDownTimer;
+    int time;
+    int scoreCount;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
          questionTextView = findViewById(R.id.questionTextView);
-         generateQuestion();
+        timerTextView = findViewById(R.id.timeTextView);
+         startGame();
     }
 
     public void generateQuestion(){
@@ -42,6 +48,29 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void startGame(){
+        time = 30;
+//        scoreCount = 0;
+        Log.i("timerTextView",Integer.toString(time)+"s");
+        timerTextView.setText(Integer.toString(time)+"s");
+         countDownTimer = new CountDownTimer(30000,1000) {
+            @Override
+            public void onTick(long l) {
+
+                time--;
+                timerTextView.setText(Integer.toString(time)+"s");
+            }
+
+            @Override
+            public void onFinish() {
+
+            }
+        }.start();
+    }
+
+    public void btnClicked(View view){
+        generateQuestion();
+    }
+    public void startBTNClicked(View view){
 
     }
 

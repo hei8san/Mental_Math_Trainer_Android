@@ -16,11 +16,11 @@
         android:text="/0"
         android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView3"
+        app:layout_constraintStart_toEndOf="@+id/timeTextView"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/timeTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
@@ -34,7 +34,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.gridlayout.widget.GridLayout
-        android:id="@+id/gridLayout"
+        android:id="@+id/answerGridLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -44,40 +44,44 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/answerBTN1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Button"
             android:textSize="20sp"
             app:layout_column="0"
-            app:layout_row="0" />
+            app:layout_row="0"
+            android:tag="0"/>
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/answerBTN2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Button"
             android:textSize="20sp"
             app:layout_column="1"
-            app:layout_row="0" />
+            app:layout_row="0"
+            android:tag="1"/>
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/answerBTN3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Button"
             android:textSize="20sp"
             app:layout_column="0"
-            app:layout_row="1" />
+            app:layout_row="1"
+            android:tag="2"/>
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/answerBTN4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Button"
             android:textSize="20sp"
             app:layout_column="1"
-            app:layout_row="1" />
+            app:layout_row="1"
+            android:tag="3"/>
     </androidx.gridlayout.widget.GridLayout>
 
     <TextView
@@ -86,7 +90,7 @@
         android:layout_height="wrap_content"
         android:text="TextView"
         android:textSize="40sp"
-        app:layout_constraintBottom_toTopOf="@+id/gridLayout"
+        app:layout_constraintBottom_toTopOf="@+id/answerGridLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

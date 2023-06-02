@@ -2,6 +2,7 @@ package online.ksawa.mentalmathtrainer;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
@@ -38,8 +39,8 @@ public class MainActivity extends AppCompatActivity {
         numberOfQuestions++;
         int firstNumber = (int) (Math.random() * 100);
         int secondNumber = (int) (Math.random() * 100);
-        Log.i("firstNumber", Integer.toString(firstNumber));
-        Log.i("secondNumber", Integer.toString(secondNumber));
+//        Log.i("firstNumber", Integer.toString(firstNumber));
+//        Log.i("secondNumber", Integer.toString(secondNumber));
 
         answer = 0;
         boolean adding = true;
@@ -62,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         // 0 - 3 random
         int randomBTNTag = (int) (Math.random() * 4);
         //tag would be easier
-        Log.i("randomNum", Integer.toString(randomBTNTag));
+//        Log.i("randomNum", Integer.toString(randomBTNTag));
         switch (randomBTNTag) {
             case 0:
                 btn1.setText(Integer.toString(answer));
@@ -123,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
         time = 30;
         scoreCount = 0;
 //        numberOfQuestions=1;
-        Log.i("timerTextView", Integer.toString(time) + "s");
+//        Log.i("timerTextView", Integer.toString(time) + "s");
         timerTextView.setText(Integer.toString(time) + "s");
         countDownTimer = new CountDownTimer(30000, 1000) {
             @Override
@@ -144,20 +145,29 @@ public class MainActivity extends AppCompatActivity {
                 Button btn4 = findViewById(R.id.answerBTN4);
                 btn4.setEnabled(false);
                 TextView resultTextView = findViewById(R.id.resultTextView);
-
+                //I dont know why I need to decrement numberOfQuestions
+                numberOfQuestions--;
                 double resultPercentage = ((double) scoreCount / (double) numberOfQuestions) * 100;
-                Log.i("result percentage", Double.toString(resultPercentage));
+                Log.i("scoreCount", Integer.toString(scoreCount));
+                Log.i("numberOfQuestions", Integer.toString(numberOfQuestions));
                 resultTextView.setText(String.format("%.2f", resultPercentage) + "%");
+                Button button = findViewById(R.id.restartBTN);
+                button.setEnabled(true);
+                button.setAlpha(1);
             }
         }.start();
 
-        if (time == 0) {
 
-
-        }
     }
 
+
+    public void restartBTNClicked(View view){
+        Intent intent = new Intent(this, HomeActivity.class);
+        startActivity(intent);
+
+    }
     public void btnClicked(View view) {
+
         Button clickedBTN = findViewById(view.getId());
         int selectedAnswer = Integer.parseInt(clickedBTN.getText().toString());
         if (selectedAnswer == answer) {
@@ -167,6 +177,8 @@ public class MainActivity extends AppCompatActivity {
             scoreTextView.setText(Integer.toString(scoreCount) + "/" + numberOfQuestions);
 
         }
+        Log.i("scoreCount", Integer.toString(scoreCount));
+        Log.i("numberOfQuestions", Integer.toString(numberOfQuestions));
         generateQuestion();
     }
 }

@@ -40,8 +40,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
 
-        app:layout_constraintTop_toTopOf="parent">
+        >
 
         <Button
             android:id="@+id/answerBTN1"
@@ -113,5 +114,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/answerGridLayout" />
+
+    <Button
+        android:id="@+id/restartBTN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Restart"
+        android:onClick="restartBTNClicked"
+        app:layout_constraintBottom_toTopOf="@+id/answerGridLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/questionTextView"
+        android:enabled="false"
+        android:alpha="0"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

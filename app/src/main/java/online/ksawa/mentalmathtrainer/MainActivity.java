@@ -30,10 +30,12 @@ public class MainActivity extends AppCompatActivity {
         scoreTextView = findViewById(R.id.scoreTextView);
         numberOfQuestions = 0;
         startGame();
+        generateQuestion();
     }
 
 
     public void generateQuestion() {
+        numberOfQuestions++;
         int firstNumber = (int) (Math.random() * 100);
         int secondNumber = (int) (Math.random() * 100);
         Log.i("firstNumber", Integer.toString(firstNumber));
@@ -79,22 +81,40 @@ public class MainActivity extends AppCompatActivity {
         }
         if (!(btn1.getTag().toString().equals(Integer.toString(randomBTNTag)))) {
             int r = (int) (Math.random() * 100);
+            r *= positiveNegativeRandomGenerator();
             btn1.setText(Integer.toString(r));
         }
         if (!(btn2.getTag().toString().equals(Integer.toString(randomBTNTag)))) {
             int r = (int) (Math.random() * 100);
+            r *= positiveNegativeRandomGenerator();
+
             btn2.setText(Integer.toString(r));
 
         }
         if (!(btn3.getTag().toString().equals(Integer.toString(randomBTNTag)))) {
             int r = (int) (Math.random() * 100);
+            r *= positiveNegativeRandomGenerator();
+
             btn3.setText(Integer.toString(r));
 
         }
         if (!(btn4.getTag().toString().equals(Integer.toString(randomBTNTag)))) {
             int r = (int) (Math.random() * 100);
+            r *= positiveNegativeRandomGenerator();
+
             btn4.setText(Integer.toString(r));
 
+        }
+
+    }
+
+    public int positiveNegativeRandomGenerator() {
+        int r1 = (int) (Math.random() * 100);
+        int r2 = (int) (Math.random() * 100);
+        if ((r1 + r2) % 2 == 0) {
+            return -1;
+        } else {
+            return 1;
         }
     }
 
@@ -102,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
     public void startGame() {
         time = 30;
         scoreCount = 0;
-        numberOfQuestions++;
+//        numberOfQuestions=1;
         Log.i("timerTextView", Integer.toString(time) + "s");
         timerTextView.setText(Integer.toString(time) + "s");
         countDownTimer = new CountDownTimer(30000, 1000) {
@@ -115,9 +135,22 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFinish() {
+                Button btn1 = findViewById(R.id.answerBTN1);
+                btn1.setEnabled(false);
+                Button btn2 = findViewById(R.id.answerBTN2);
+                btn2.setEnabled(false);
+                Button btn3 = findViewById(R.id.answerBTN3);
+                btn3.setEnabled(false);
+                Button btn4 = findViewById(R.id.answerBTN4);
+                btn4.setEnabled(false);
+                TextView resultTextView = findViewById(R.id.resultTextView);
 
+                double resultPercentage = ((double) scoreCount / (double) numberOfQuestions) * 100;
+                Log.i("result percentage", Double.toString(resultPercentage));
+                resultTextView.setText(String.format("%.2f", resultPercentage) + "%");
             }
         }.start();
+
         if (time == 0) {
 
 
@@ -125,17 +158,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void btnClicked(View view) {
-//        Button clickedBTN = findViewById(view.getId());
-//        int selectedAnswer = Integer.parseInt(clickedBTN.getText().toString());
-//        if (selectedAnswer == answer) {
-//            scoreCount++;
-//            scoreTextView.setText(Integer.toString(scoreCount) + "/" + numberOfQuestions);
-//        }
+        Button clickedBTN = findViewById(view.getId());
+        int selectedAnswer = Integer.parseInt(clickedBTN.getText().toString());
+        if (selectedAnswer == answer) {
+            scoreCount++;
+            scoreTextView.setText(Integer.toString(scoreCount) + "/" + numberOfQuestions);
+        } else {
+            scoreTextView.setText(Integer.toString(scoreCount) + "/" + numberOfQuestions);
 
+        }
         generateQuestion();
-
-
     }
-
-
 }
